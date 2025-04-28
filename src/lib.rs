@@ -1,5 +1,5 @@
-use pyo3::prelude::*;
 use pyo3::exceptions::PyValueError;
+use pyo3::prelude::*;
 
 // We rename the Rust library to `ansi_to_html_lib` to avoid name clash
 use ansi_to_html_lib::convert as _convert;
