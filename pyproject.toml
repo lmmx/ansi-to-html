@@ -1,7 +1,5 @@
 [build-system]
-requires = [
-  "maturin>=1.8,<2.0"
-]
+requires = ["maturin>=1.8,<2.0"]
 build-backend = "maturin"
 
 [project]
@@ -19,16 +17,10 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: 3.9"
+  "Programming Language :: Python :: 3.9",
 ]
-authors = [
-  {email = "louismmx@gmail.com", name = "Louis Maddox"}
-]
-keywords = [
-  "ansi",
-  "html",
-  "rust",
-]
+authors = [{ email = "louismmx@gmail.com", name = "Louis Maddox" }]
+keywords = ["ansi", "html", "rust"]
 readme = "README.md"
 requires-python = ">=3.9"
 version = "0.0.6"
@@ -41,18 +33,13 @@ dev = [
   "maturin[patchelf]>=1.8.2",
   "pdm>=2.22.3",
   "pdm-bump>=0.9.10",
-  "pre-commit>=4.1.0"
+  "pre-commit>=4.1.0",
 ]
-bench = [
-  "markdown>=3.7",
-  "markdown2>=2.5.3"
-]
+bench = ["markdown>=3.7", "markdown2>=2.5.3"]
 
 [project.urls]
 Homepage = "https://github.com/lmmx/ansi-to-html"
 Repository = "https://github.com/lmmx/ansi-to-html.git"
 
 [tool.maturin]
-features = [
-  "pyo3/extension-module"
-]
+features = ["pyo3/extension-module"]

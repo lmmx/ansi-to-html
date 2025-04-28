@@ -1,13 +1,11 @@
 use pyo3::prelude::*;
 
 // We rename the Rust library to `ansi_to_html_lib` to avoid name clash
-use ansi_to_html_lib::{convert as _convert};
+use ansi_to_html_lib::convert as _convert;
 
 /// Render an ANSI string to HTML.
 #[pyfunction(signature=(text))]
-fn convert(
-    text: &str,
-) -> PyResult<String> {
+fn convert(text: &str) -> PyResult<String> {
     let html = _convert(text);
     Ok(html)
 }

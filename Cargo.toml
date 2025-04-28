@@ -1,9 +1,9 @@
 [dependencies]
-ansi-to-html_lib = {package = "ansi-to-html", version = "0.2.2"}
+ansi-to-html_lib = { package = "ansi-to-html", version = "0.2.2" }
 pyo3 = "0.23.3"
 
 [lib]
-name = "ansi-to-html"
+name = "ansi_to_html"
 crate-type = ["cdylib"]
 
 [package]
