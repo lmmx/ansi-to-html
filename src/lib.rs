@@ -4,6 +4,9 @@ use pyo3::prelude::*;
 // We rename the Rust library to `ansi_to_html_lib` to avoid name clash
 use ansi_to_html_lib::convert as _convert;
 
+mod builder;
+use builder::Converter;
+
 /// Render an ANSI string to HTML.
 #[pyfunction(signature=(text))]
 fn convert(text: &str) -> PyResult<String> {
@@ -18,8 +21,9 @@ fn convert(text: &str) -> PyResult<String> {
 
 #[pymodule]
 fn ansi_to_html(m: &Bound<'_, PyModule>) -> PyResult<()> {
-    // Expose the wrapped function
+    // Expose the wrapped function and builder class
     m.add_function(wrap_pyfunction!(convert, m)?)?;
+    m.add_class::<Converter>()?;
 
     Ok(())
 }
