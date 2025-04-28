@@ -5,7 +5,7 @@ use pyo3::prelude::*;
 use ansi_to_html_lib::Converter as RsConverter;
 
 /// Python wrapper for the ansi_to_html::Converter
-/// 
+///
 /// Provides a builder pattern interface for configuring ANSI to HTML conversion.
 #[pyclass]
 pub struct Converter {
