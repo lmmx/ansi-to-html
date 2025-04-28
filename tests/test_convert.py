@@ -20,29 +20,9 @@ def test_default_converter():
     assert "World" in html
 
 
-def test_builder_pattern():
-    """Test the builder pattern interface"""
-    # Create a converter with a chain of configuration methods
-    converter = (
-        ansi_to_html.Converter()
-        .skip_escape(True)
-        .skip_optimize(True)
-        .four_bit_var_prefix("theme-")
-    )
-
-    # Test with HTML that shouldn't be escaped
-    input_text = "<div>\033[31mRed Text\033[0m</div>"
-    html = converter.convert(input_text)
-
-    # Verify the builder settings were applied
-    assert "<div>" in html  # HTML not escaped
-    assert "</div>" in html  # HTML not escaped
-    assert "color:var(--theme-red,#a00)" in html  # Custom prefix applied
-
-
 def test_skip_escape():
-    """Test only the skip_escape setting"""
-    converter = ansi_to_html.Converter().skip_escape(True)
+    """Test the skip_escape flag"""
+    converter = ansi_to_html.Converter(skip_escape=True)
 
     input_text = "<div>\033[31mRed Text\033[0m</div>"
     html = converter.convert(input_text)
@@ -56,8 +36,8 @@ def test_skip_escape():
 
 
 def test_skip_optimize():
-    """Test only the skip_optimize setting"""
-    converter = ansi_to_html.Converter().skip_optimize(True)
+    """Test the skip_optimize flag"""
+    converter = ansi_to_html.Converter(skip_optimize=True)
 
     # Create some ANSI text that would normally be optimized
     input_text = "\033[31m\033[32mGreen Text\033[0m"
@@ -68,14 +48,29 @@ def test_skip_optimize():
 
 
 def test_four_bit_var_prefix():
-    """Test only the four_bit_var_prefix setting"""
-    converter = ansi_to_html.Converter().four_bit_var_prefix("custom-")
+    """Test the four_bit_var_prefix flag"""
+    converter = ansi_to_html.Converter(four_bit_var_prefix="custom-")
 
     input_text = "\033[31mRed Text\033[0m"
     html = converter.convert(input_text)
 
     # Should use the custom prefix for CSS variables
     assert "color:var(--custom-red,#a00)" in html
+
+
+def test_multiple_flags():
+    """Test multiple flags combined"""
+    converter = ansi_to_html.Converter(
+        skip_escape=True, skip_optimize=True, four_bit_var_prefix="theme-"
+    )
+
+    input_text = "<div>\033[31mRed Text\033[0m</div>"
+    html = converter.convert(input_text)
+
+    # All settings should be applied
+    assert "<div>" in html  # HTML not escaped
+    assert "</div>" in html  # HTML not escaped
+    assert "color:var(--theme-red,#a00)" in html  # Custom prefix applied
 
 
 def test_direct_convert_function():
@@ -90,26 +85,6 @@ def test_direct_convert_function():
     # Should perform default conversion
     assert "<b>" in html
     assert "World" in html
-
-
-def test_builder_immutability():
-    """Test that builder methods return new instances"""
-    base_converter = ansi_to_html.Converter()
-
-    # Calling builder methods should return new instances
-    custom_converter = base_converter.skip_escape(True).four_bit_var_prefix("custom-")
-
-    # The original converter should still work with default settings
-    input_text = "<div>\033[31mRed Text\033[0m</div>"
-
-    # With base converter, HTML should be escaped
-    base_html = base_converter.convert(input_text)
-    assert "&lt;div&gt;" in base_html
-
-    # With custom converter, HTML should not be escaped and prefix should be custom
-    custom_html = custom_converter.convert(input_text)
-    assert "<div>" in custom_html
-    assert "color:var(--custom-red,#a00)" in custom_html
 
 
 @pytest.mark.parametrize(
@@ -151,16 +126,9 @@ def test_builder_immutability():
 )
 def test_converter_parametrized(escape_html, optimize, prefix, input_text, expected):
     """Parametrized test for different converter configurations"""
-    converter = ansi_to_html.Converter()
-
-    if escape_html:
-        converter = converter.skip_escape(True)
-
-    if optimize:
-        converter = converter.skip_optimize(True)
-
-    if prefix:
-        converter = converter.four_bit_var_prefix(prefix)
+    converter = ansi_to_html.Converter(
+        skip_escape=escape_html, skip_optimize=optimize, four_bit_var_prefix=prefix
+    )
 
     html = converter.convert(input_text)
 

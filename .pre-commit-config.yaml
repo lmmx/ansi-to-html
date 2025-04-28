@@ -11,7 +11,7 @@ repos:
     rev: v0.5.2
     hooks:
       - id: run-just-rust
-        args: [precommit]
+        args: [precommit-fix]
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.19.1
     hooks:
