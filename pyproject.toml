@@ -3,7 +3,7 @@ requires = ["maturin>=1.8,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "ansi-to-html"
+name = "ansi-to-html-py"
 description = "Python bindings for the ansi-to-html Rust library, a fast ANSI terminal output to HTML converter"
 classifiers = [
   "Intended Audience :: Developers",

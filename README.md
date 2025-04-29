@@ -3,9 +3,9 @@
 <!-- [![downloads](https://static.pepy.tech/badge/ansi-to-html/month)](https://pepy.tech/project/ansi-to-html) -->
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet)](https://pdm.fming.dev)
-[![PyPI](https://img.shields.io/pypi/v/ansi-to-html.svg)](https://pypi.org/project/ansi-to-html)
-[![Supported Python versions](https://img.shields.io/pypi/pyversions/ansi-to-html.svg)](https://pypi.org/project/ansi-to-html)
-[![License](https://img.shields.io/pypi/l/ansi-to-html.svg)](https://pypi.python.org/pypi/ansi-to-html)
+[![PyPI](https://img.shields.io/pypi/v/ansi-to-html-py.svg)](https://pypi.org/project/ansi-to-html-py)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/ansi-to-html-py.svg)](https://pypi.org/project/ansi-to-html-py)
+[![License](https://img.shields.io/pypi/l/ansi-to-html-py.svg)](https://pypi.python.org/pypi/ansi-to-html-py)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/lmmx/ansi-to-html/master.svg)](https://results.pre-commit.ci/latest/github/lmmx/ansi-to-html/master)
 
 Python bindings for the ansi-to-html Rust library, a fast ANSI terminal styling to HTML converter.
@@ -13,7 +13,7 @@ Python bindings for the ansi-to-html Rust library, a fast ANSI terminal styling 
 ## Installation
 
 ```bash
-pip install ansi-to-html
+pip install ansi-to-html-py
 ```
 
 ### Requirements
