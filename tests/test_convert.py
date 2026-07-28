@@ -1,5 +1,5 @@
-import pytest
 import ansi_to_html
+import pytest
 
 
 def test_default_converter():
